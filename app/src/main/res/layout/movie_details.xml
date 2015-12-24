@@ -1,74 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.harsh.moviecentral.DetailActivity">
-<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-<ImageView android:layout_height="108dp"
+    tools:context="com.example.harsh.moviecentral.DetailActivity">
+
+    <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    android:scaleType="fitXY"
-    android:id="@+id/BackDrop"
-    android:src="@drawable/backdrop"
+        <ImageView
+            android:id="@+id/BackDrop"
+            android:layout_width="match_parent"
 
-    ></ImageView>
-<TextView
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:layout_alignBottom="@+id/BackDrop"
-    android:background="@color/accentTrans"
-    android:textColor="@color/white"
-    android:text="movie name"
-    android:textSize="@dimen/title_text"
-    android:gravity="center"
-    android:id="@+id/detail_title"
-    ></TextView>
+            android:layout_height="@dimen/backDropHeight"
+            android:scaleType="fitXY"
+            android:src="@drawable/backdrop"
 
-    <ImageView
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_height="209dp"
-        android:layout_width="139dp"
-        android:src="@drawable/image_not_available"
-        android:layout_below="@+id/BackDrop"
-        android:id="@+id/thumbnail"
-        ></ImageView>
-    <TextView
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:id="@+id/release_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2015-08-21"
-        android:layout_below="@+id/BackDrop"
-        android:layout_toRightOf="@+id/thumbnail"
-        android:textSize="@dimen/reg_text"
-        ></TextView>
-    <TextView
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:id="@+id/rating_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="10/10"
-        android:layout_below="@+id/release_date"
-        android:layout_toRightOf="@+id/thumbnail"
-        android:textSize="@dimen/smallPad"
-        >
+            ></ImageView>
 
-    </TextView>
+        <TextView
+            android:id="@+id/detail_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/BackDrop"
+            android:background="@color/accentTrans"
+            android:gravity="center"
+            android:text="movie name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_text"></TextView>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/summry"
-        android:layout_below="@+id/thumbnail"
-        android:layout_alignStart="@+id/thumbnail"
-        android:layout_marginTop="@dimen/smallPad" />
-</RelativeLayout></ScrollView>
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="@dimen/posterW75"
+            android:layout_height="@dimen/posterH75"
+            android:layout_below="@+id/BackDrop"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:src="@drawable/image_not_available"></ImageView>
+
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/BackDrop"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_toRightOf="@+id/thumbnail"
+            android:textSize="@dimen/reg_text"></TextView>
+
+        <TextView
+            android:id="@+id/rating_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/release_date"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_toRightOf="@+id/thumbnail"
+            android:textSize="@dimen/smallPad">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/summry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_alignStart="@+id/thumbnail"
+            android:layout_below="@+id/thumbnail"
+            android:layout_marginTop="@dimen/smallPad"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </RelativeLayout>
+</ScrollView>

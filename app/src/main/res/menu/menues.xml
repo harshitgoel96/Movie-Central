@@ -5,11 +5,11 @@
             <!-- "file" submenu -->
 
                 <item android:id="@+id/sortByRelease"
-                    android:title="Latest Release" />
+                    android:title="@string/latestRelease" />
                 <item android:id="@+id/sortByPopularity"
-                    android:title="Most Popular" />
+                    android:title="@string/mostPop" />
                 <item android:id="@+id/sortByRating"
-                    android:title="Highest Rated" />
+                    android:title="@string/hightRate" />
 
 
     </menu>

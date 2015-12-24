@@ -8,8 +8,8 @@
 
 
     <ImageView
-        android:layout_width="185dp"
-            android:layout_height="279dp"
+        android:layout_width="@dimen/posterW100"
+            android:layout_height="@dimen/posterH100"
         android:scaleType="fitXY"
         android:id="@+id/posterImage"
         android:src="@drawable/image_not_available"
@@ -23,8 +23,8 @@
         android:layout_alignBottom="@+id/posterImage"
         android:background="@color/accentTrans"
         android:textColor="@color/white"
-        android:paddingStart="6dp"
-        android:textSize="18sp"
+        android:paddingStart="@dimen/shortPaddingStart"
+        android:textSize="@dimen/movieTitleSize"
         />
     <!--  <ImageView android:layout_width="48dp" android:layout_height="48dp"
           android:src="@drawable/rating"

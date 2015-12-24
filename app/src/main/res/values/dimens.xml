@@ -5,4 +5,13 @@
     <dimen name="title_text">26sp</dimen>
     <dimen name="reg_text">20sp</dimen>
     <dimen name="smallPad">10sp</dimen>
+    <dimen name="zero">0dp</dimen>
+    <dimen name="_48">48dp</dimen>
+    <dimen name="shortPaddingStart">6dp</dimen>
+    <dimen name="movieTitleSize">18sp</dimen>
+    <dimen name="backDropHeight">108dp</dimen>
+    <dimen name="posterH75">209dp</dimen>
+    <dimen name="posterW75">139dp</dimen>
+    <dimen name="posterH100">279dp</dimen>
+    <dimen name="posterW100">185dp</dimen>
 </resources>

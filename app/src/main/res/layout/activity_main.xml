@@ -11,7 +11,7 @@
         android:visibility="visible"
         android:background="@color/colorAccent"
         android:textColor="@color/white"
-        android:text="NOT CONNECTED TO INTERNET"
+        android:text="@string/noInternet"
         android:textSize="@dimen/reg_text"
         android:padding="@dimen/smallPad"
         android:gravity="center_horizontal"
@@ -21,8 +21,8 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:numColumns="@integer/grid_col_num"
-        android:verticalSpacing="0dp"
-        android:horizontalSpacing="0dp"
+        android:verticalSpacing="@dimen/zero"
+        android:horizontalSpacing="@dimen/zero"
 
         android:id="@+id/grid_keeper"
         ></GridView>

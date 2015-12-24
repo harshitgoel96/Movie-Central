@@ -2,4 +2,8 @@
     <string name="app_name">MovieCentral</string>
     <string name="imageBase">http://image.tmdb.org/t/p/w185/</string>
     <string name="discoverMovie">http://api.themoviedb.org/3/discover/movie</string>
+    <string name="latestRelease">Latest Release</string>
+    <string name="mostPop">Most Popular</string>
+    <string name="hightRate">Highest Rated</string>
+    <string name="noInternet">NOT CONNECTED TO INTERNET</string>
 </resources>
