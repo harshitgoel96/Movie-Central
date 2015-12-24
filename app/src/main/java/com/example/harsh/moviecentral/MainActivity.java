@@ -1,6 +1,8 @@
 package com.example.harsh.moviecentral;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -8,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView msg;
     private GridView gv;
     private Context c;
+    private PosterView output;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         msg=(TextView)findViewById(R.id.connectivityPopup);
         gv=(GridView)findViewById(R.id.grid_keeper);
         c=this;
+
         if(isConnected())
         {
             msg.setVisibility(View.GONE);
@@ -53,8 +58,25 @@ public class MainActivity extends AppCompatActivity {
         {
             msg.setVisibility(View.VISIBLE);
         }
+        gv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                Result m = output.getResults().get(position);
+                Intent intent = new Intent(c,DetailActivity.class);
+                Gson g=new Gson();
+                String output=g.toJson(m, Result.class);
+                Log.e("output",output);
+                intent.putExtra(Constants.keyName,output);
+                startActivity(intent);
+
+            }
+        });
 
     }
+
+
+
     private  void loadGrid(){
         Map<String,String> reqMap=new HashMap<>();
         reqMap.put("api_key", Constants.movieDbkey);
@@ -132,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             Gson g=new Gson();
-            PosterView output=g.fromJson(result,PosterView.class);
+            output=g.fromJson(result,PosterView.class);
             populateGrid(output);
         }
     }

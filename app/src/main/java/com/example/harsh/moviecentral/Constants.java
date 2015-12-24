@@ -22,4 +22,6 @@ public class Constants {
         return strB.toString();
     }
     public static final String imageBase="http://image.tmdb.org/t/p/w185/";
+
+    public static final String keyName="data";
 }
