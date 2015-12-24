@@ -3,6 +3,8 @@ package com.example.harsh.moviecentral;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,8 +17,12 @@ import com.squareup.picasso.Picasso;
 public class DetailActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.movie_details);
+        this.getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title);
+        ((ImageView)findViewById(R.id.menubtn)).setVisibility(View.INVISIBLE);
         Bundle bundle = getIntent().getExtras();
         //int value = bundle.getInt("some_key");
         String str=bundle.getString(Constants.keyName);

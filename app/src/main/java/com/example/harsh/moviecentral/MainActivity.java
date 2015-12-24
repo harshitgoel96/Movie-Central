@@ -1,5 +1,6 @@
 package com.example.harsh.moviecentral;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -9,9 +10,15 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,42 +39,114 @@ import java.util.HashMap;
 import java.util.Map;
 //import com.example.harsh.moviecentra.Contstants;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
-    private String sortBy="release_date";
-    private String sortOrd="desc";
+    private String sortBy = "release_date";
+    private String sortOrd = "desc";
     private TextView msg;
     private GridView gv;
     private Context c;
     private PosterView output;
+    private ImageView imgBtn;
+    private PosterViewAdapter adap;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+    private void showToast(String msg){
+        Toast.makeText(c,msg,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menues, menu);
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        // Handle item selection
+
+        switch (item.getItemId()) {
+            case R.id.sortByRelease:
+                //newGame();
+                if (!sortBy.equals("release_date")) {
+                    adap.notifyDataSetInvalidated();
+                    gv.invalidateViews();
+                    sortBy = "release_date";
+                    loadGrid();
+                }
+                else{
+                    showToast("Already Sorted");
+                }
+                return true;
+            case R.id.sortByRating:
+                //showHelp();
+                if (!sortBy.equals("vote_average")) {
+                    adap.notifyDataSetInvalidated();
+                    gv.invalidateViews();
+                    sortBy = "vote_average";
+                    loadGrid();
+                }
+                else{
+                    showToast("Already Sorted");
+                }
+                return true;
+            case R.id.sortByPopularity:
+                if (!sortBy.equals("popularity")) {
+                    adap.notifyDataSetInvalidated();
+                    gv.invalidateViews();
+                    sortBy = "popularity";
+                    loadGrid();
+                }else{
+                    showToast("Already Sorted");
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        msg=(TextView)findViewById(R.id.connectivityPopup);
-        gv=(GridView)findViewById(R.id.grid_keeper);
-        c=this;
 
-        if(isConnected())
-        {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+        setContentView(R.layout.activity_main);
+        this.getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title);
+        msg = (TextView) findViewById(R.id.connectivityPopup);
+        gv = (GridView) findViewById(R.id.grid_keeper);
+        imgBtn = (ImageView) findViewById(R.id.menubtn);
+        c = this;
+        registerForContextMenu(imgBtn);
+        imgBtn.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        openContextMenu(imgBtn);
+                    }
+                }
+        );
+
+
+        if (isConnected()) {
             msg.setVisibility(View.GONE);
             loadGrid();
-        }
-        else
-        {
+        } else {
             msg.setVisibility(View.VISIBLE);
         }
-        gv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Result m = output.getResults().get(position);
-                Intent intent = new Intent(c,DetailActivity.class);
-                Gson g=new Gson();
-                String output=g.toJson(m, Result.class);
-                Log.e("output",output);
-                intent.putExtra(Constants.keyName,output);
+                Intent intent = new Intent(c, DetailActivity.class);
+                Gson g = new Gson();
+                String output = g.toJson(m, Result.class);
+                Log.e("output", output);
+                intent.putExtra(Constants.keyName, output);
                 startActivity(intent);
 
             }
@@ -76,22 +155,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    private  void loadGrid(){
-        Map<String,String> reqMap=new HashMap<>();
+    private void loadGrid() {
+        Map<String, String> reqMap = new HashMap<>();
         reqMap.put("api_key", Constants.movieDbkey);
         reqMap.put("sort_by", sortBy + "." + sortOrd);
         Date now = new Date();
         String strDate = sdf.format(now);
-        String url=getResources().getString(R.string.discoverMovie);
-        url+=Constants.getQueryParamFromMap(reqMap);
-        url+="&release_date.lte="+strDate+"&language=en";
-        Log.e("Movie Central",url);
+        String url = getResources().getString(R.string.discoverMovie);
+        url += Constants.getQueryParamFromMap(reqMap);
+        url += "&release_date.lte=" + strDate + "&language=en";
+        Log.e("Movie Central", url);
         new HttpAsyncTask().execute(url);
         //RequestModel request=new RequestModel("loadGrid",getResources().getString(R.string.discoverMovie),reqMap,null);
 
     }
-    private boolean isConnected(){
+
+    private boolean isConnected() {
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected())
@@ -99,7 +178,8 @@ public class MainActivity extends AppCompatActivity {
         else
             return false;
     }
-    public String GET(String url){
+
+    public String GET(String url) {
         InputStream inputStream = null;
         String result = "";
         try {
@@ -114,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
             inputStream = httpResponse.getEntity().getContent();
 
             // convert inputstream to string
-            if(inputStream != null)
+            if (inputStream != null)
                 result = convertInputStreamToString(inputStream);
             else
                 result = "Did not work!";
@@ -125,41 +205,42 @@ public class MainActivity extends AppCompatActivity {
 
         return result;
     }
-   private String convertInputStreamToString(InputStream inputStream)
-    {
+
+    private String convertInputStreamToString(InputStream inputStream) {
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String line = "";
             String result = "";
-            while ((line = bufferedReader.readLine()) != null)
-            {  result += line;
+            while ((line = bufferedReader.readLine()) != null) {
+                result += line;
             }
 
             inputStream.close();
             return result;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             return "Error";
         }
     }
+
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
 
             return GET(urls[0]);
         }
+
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            Gson g=new Gson();
-            output=g.fromJson(result,PosterView.class);
+            Gson g = new Gson();
+            output = g.fromJson(result, PosterView.class);
             populateGrid(output);
         }
     }
-    void populateGrid(PosterView data){
-        PosterViewAdapter adap=new PosterViewAdapter(c,data);
+
+    void populateGrid(PosterView data) {
+        adap = new PosterViewAdapter(c, data);
         gv.setAdapter(adap);
     }
 
