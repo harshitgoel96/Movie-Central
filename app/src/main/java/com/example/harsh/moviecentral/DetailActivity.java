@@ -47,4 +47,11 @@ public class DetailActivity extends Activity {
         rating.setText(String.format("%.2f",data.getVoteAverage())+"/10");
 
     }
+    //starting stage2
+    private void LoadReviews(){
+
+    }
+    private void LoadTrailers(){
+
+    }
 }
