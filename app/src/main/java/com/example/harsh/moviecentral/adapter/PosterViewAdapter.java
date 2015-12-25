@@ -1,4 +1,4 @@
-package com.example.harsh.moviecentral;
+package com.example.harsh.moviecentral.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,6 +8,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.harsh.moviecentral.utils.Constants;
+import com.example.harsh.moviecentral.R;
+import com.example.harsh.moviecentral.model.PosterView;
+import com.example.harsh.moviecentral.model.Result;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -15,7 +19,7 @@ import java.util.List;
 /**
  * Created by harsh on 12/24/2015.
  */
-class PosterViewAdapter extends BaseAdapter {
+public class PosterViewAdapter extends BaseAdapter {
     private Context mContext;
     private PosterView mData;
 
@@ -35,7 +39,7 @@ class PosterViewAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return mResult.get(position).getId();
     }
-    PosterViewAdapter(Context context,PosterView data)
+    public PosterViewAdapter(Context context,PosterView data)
     {
         this.mData=data;
         this.mContext=context;

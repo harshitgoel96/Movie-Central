@@ -1,17 +1,14 @@
-package com.example.harsh.moviecentral;
+package com.example.harsh.moviecentral.activity;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +19,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.harsh.moviecentral.utils.Constants;
+import com.example.harsh.moviecentral.R;
+import com.example.harsh.moviecentral.adapter.PosterViewAdapter;
+import com.example.harsh.moviecentral.model.PosterView;
+import com.example.harsh.moviecentral.model.Result;
 import com.google.gson.Gson;
 
 import cz.msebera.android.httpclient.*;
@@ -37,6 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
 //import com.example.harsh.moviecentra.Contstants;
 
 public class MainActivity extends Activity {

@@ -1,6 +1,8 @@
-package com.example.harsh.moviecentral;
+package com.example.harsh.moviecentral.utils;
 
 import android.os.AsyncTask;
+
+import com.example.harsh.moviecentral.model.RequestModel;
 
 /**
  * Created by harsh on 12/24/2015.

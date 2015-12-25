@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.harsh.moviecentral.DetailActivity">
+    tools:context=".activity.DetailActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -59,7 +59,9 @@
 
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_toRightOf="@+id/thumbnail"
-            android:textSize="@dimen/smallPad">
+            android:textSize="@dimen/smallPad"
+
+            >
 
         </TextView>
 
@@ -72,5 +74,42 @@
             android:layout_below="@+id/thumbnail"
             android:layout_marginTop="@dimen/smallPad"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-    </RelativeLayout>
-</ScrollView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/shortPaddingStart"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:text="Videos"
+            android:id="@+id/train_label"
+            android:layout_below="@+id/summry"
+            android:textSize="@dimen/reg_text"
+            ></TextView>
+        <ListView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/trailer_list"
+            android:layout_below="@+id/train_label"
+            ></ListView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/shortPaddingStart"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:text="Reviews"
+            android:id="@+id/rev_label"
+            android:textSize="@dimen/reg_text"
+            android:layout_below="@+id/trailer_list"
+            ></TextView>
+        <ListView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/review_list"
+            android:layout_below="@+id/rev_label"
+
+            ></ListView>
+</RelativeLayout>
+    </ScrollView>
+<!--</ScrollView>-->

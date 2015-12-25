@@ -1,8 +1,9 @@
 
-package com.example.harsh.moviecentral;
+package com.example.harsh.moviecentral.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

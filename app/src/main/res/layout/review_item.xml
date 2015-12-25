@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/shortPaddingStart"
+    >
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/trailerText"
+        android:layout_alignParentLeft="true"
+        android:paddingTop="@dimen/shortPaddingStart"
+        android:textSize="@dimen/reg_text"
+        ></TextView>
+</RelativeLayout>

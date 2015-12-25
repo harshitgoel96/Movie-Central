@@ -1,5 +1,5 @@
 
-package com.example.harsh.moviecentral;
+package com.example.harsh.moviecentral.model;
 
 import java.util.ArrayList;
 import java.util.List;
