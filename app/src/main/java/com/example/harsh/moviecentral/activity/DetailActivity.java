@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.HeaderViewListAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -22,6 +23,7 @@ import com.example.harsh.moviecentral.model.VideosModel;
 import com.example.harsh.moviecentral.utils.Constants;
 import com.example.harsh.moviecentral.R;
 import com.example.harsh.moviecentral.model.Result;
+import com.example.harsh.moviecentral.utils.MyDBHandler;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -45,6 +47,8 @@ public class DetailActivity extends Activity {
     Result data;
     TextView trailer_l;
     TextView revi_l;
+    MyDBHandler dbHandler;
+    ImageView likeBtn;
     private Context c;
 
     class GetParams {
@@ -73,11 +77,13 @@ public class DetailActivity extends Activity {
         setContentView(R.layout.movie_details);
         this.getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title);
         c = this;
+         dbHandler=new MyDBHandler(getApplication());
         ((ImageView) findViewById(R.id.menubtn)).setVisibility(View.INVISIBLE);
         trailerList = (ListView) findViewById(R.id.trailer_list);
         reviewList = (ListView) findViewById(R.id.review_list);
         trailer_l = (TextView) findViewById(R.id.train_label);
         revi_l = (TextView) findViewById(R.id.rev_label);
+        likeBtn=(ImageView)findViewById(R.id.likeBtn);
         Bundle bundle = getIntent().getExtras();
         //int value = bundle.getInt("some_key");
         String str = bundle.getString(Constants.keyName);
@@ -100,10 +106,43 @@ public class DetailActivity extends Activity {
         releaseDate.setText(data.getReleaseDate());
         //movieLength.setText(data.get);
         rating.setText(String.format("%.2f", data.getVoteAverage()) + "/10");
-
-
+        updateFavImg();
+        likeBtn.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toggleFav();
+                    }
+                }
+        );
         LoadTrailers();
         LoadReviews();
+
+    }
+
+    //add to fav
+    private void updateFavImg(){
+        if(dbHandler.isFav(data.getId())){
+            likeBtn.setImageResource(R.drawable.like);
+        }
+        else
+        {
+            likeBtn.setImageResource(R.drawable.unlike);
+        }
+
+    }
+    private void toggleFav(){
+        if(dbHandler.isFav(data.getId()))
+        {
+            //delete
+            dbHandler.deleteFav(data.getId());
+            likeBtn.setImageResource(R.drawable.unlike);
+        }
+        else{
+            dbHandler.addFavMovie(data);
+            likeBtn.setImageResource(R.drawable.like);
+        }
+        updateFavImg();
     }
 
     //starting stage2

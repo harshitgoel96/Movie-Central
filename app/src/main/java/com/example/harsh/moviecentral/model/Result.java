@@ -1,6 +1,8 @@
 
 package com.example.harsh.moviecentral.model;
 
+import android.database.Cursor;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -303,6 +305,30 @@ public class Result {
      */
     public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
+    }
+    public Result(){
+
+    }
+
+    public Result(Cursor c)
+    {
+        this.adult=(c.getInt(c.getColumnIndexOrThrow("adult")))==1?true:false;
+        this.backdropPath=c.getString(c.getColumnIndexOrThrow("backdropPath"));
+        this.id=c.getInt(c.getColumnIndexOrThrow("id"));
+        this.originalLanguage=c.getString(c.getColumnIndexOrThrow("originalLanguage"));
+
+        this.video=(c.getInt(c.getColumnIndexOrThrow("video")))==1?true:false;
+        this.popularity=(c.getDouble(c.getColumnIndexOrThrow("popularity")));
+        this.voteAverage=(c.getDouble(c.getColumnIndexOrThrow("voteAverage")));
+
+        this.voteCount=(c.getInt(c.getColumnIndexOrThrow("voteCount")));
+
+        this.posterPath=c.getString(c.getColumnIndexOrThrow("posterPath"));
+
+        this.originalTitle=c.getString(c.getColumnIndexOrThrow("originalTitle"));
+        this.overview=c.getString(c.getColumnIndexOrThrow("overview"));
+        this.releaseDate=c.getString(c.getColumnIndexOrThrow("releaseDate"));
+        this.title=c.getString(c.getColumnIndexOrThrow("title"));
     }
 
 }

@@ -39,4 +39,34 @@ public class Constants {
     public static String getReviewLink(String id){
         return String.format(revLink,id,movieDbkey);
     }
+    public static final String DATABASE_NAME="Movie-Central.db";
+    public static final int DATABASE_VERSION=1;
+    public static String[] fav_mov_cols={"adult",
+            "video",
+            "popularity",
+            "voteAverage",
+            "id",
+            "voteCount",
+            "backdropPath",
+            "posterPath",
+            "originalLanguage",
+            "originalTitle",
+            "overview",
+            "releaseDate",
+            "title"};
+    public static String fam_mov_sql="CREATE TABLE IF NOT EXISTS 'fav_move'( " +
+            "'adult' NUMERIC, " +
+            "'video' NUMERIC, " +
+            "'popularity' real, " +
+            "'voteAverage' real, " +
+            "'id' Integer, " +
+            "'voteCount' Integer, " +
+            "'backdropPath' text, " +
+            "'posterPath' text, " +
+            "'originalLanguage' text, " +
+            "'originalTitle' text, " +
+            "'overview' text, " +
+            "'releaseDate' text, " +
+            "'title' text " +
+            ")";
 }

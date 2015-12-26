@@ -64,7 +64,17 @@
             >
 
         </TextView>
-
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/unlike"
+            android:layout_toRightOf="@+id/thumbnail"
+            android:layout_below="@id/rating_text"
+            android:scaleType="fitCenter"
+            android:layout_margin="@dimen/_48"
+            android:background="#00000000"
+            android:id="@+id/likeBtn"
+            ></ImageView>
         <TextView
             android:id="@+id/summry"
             android:layout_width="match_parent"

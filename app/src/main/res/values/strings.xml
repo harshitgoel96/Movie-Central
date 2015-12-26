@@ -6,4 +6,5 @@
     <string name="mostPop">Most Popular</string>
     <string name="hightRate">Highest Rated</string>
     <string name="noInternet">NOT CONNECTED TO INTERNET</string>
+    <string name="showFav">Show Favorite </string>
 </resources>

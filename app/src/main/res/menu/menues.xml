@@ -10,6 +10,8 @@
                     android:title="@string/mostPop" />
                 <item android:id="@+id/sortByRating"
                     android:title="@string/hightRate" />
+    <item android:id="@+id/listFav"
+        android:title="@string/showFav" />
 
 
     </menu>
